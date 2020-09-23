@@ -65,31 +65,16 @@ class CategoryController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Category $category)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Category $category)
     {
-        try {
-            $category->destroy();
-            return response([], 204);
-        } catch(\Exception $e) {
-            return response(['problem Deleting the category', 500]);
-        }
+        $category_id = $category->id;
+        // $products = Product::where('category_id', $category_id)->get();
+        $category->products()->delete();
+        $category->delete();
     }
 }

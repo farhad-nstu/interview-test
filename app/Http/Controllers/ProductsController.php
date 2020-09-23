@@ -18,7 +18,7 @@ class ProductsController extends Controller
         $product->name = $request->name;
         $product->price = $request->price;
         $product->qty = $request->qty;
-        $product->category_id = $request->$category_id;
+        $product->category_id = $request->category_id;
 
         $product->save();
         return $product;
